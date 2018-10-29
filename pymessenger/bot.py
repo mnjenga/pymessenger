@@ -65,7 +65,7 @@ class Bot:
             Response from API as <dict>
         """
         data = {
-            "recipient": json.dumps({"id":recipient_id},
+            "recipient": json.dumps({"id":recipient_id}),
             "message": json.dumps({"attachment":{"type":attachment_type, "payload":{}}})
             }
         files = {
