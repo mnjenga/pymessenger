@@ -68,7 +68,7 @@ class Bot:
             "recipient":{
                     "id": recipient_id
             },
-            
+            'notification_type': notification_type,
             "message": {
                     "attachment": {
                         "type": attachment_type,
@@ -77,11 +77,12 @@ class Bot:
             },
             "filedata": (os.path.basename(attachment_path), open(attachment_path, 'rb'))
         }
-        multipart_data = MultipartEncoder(payload)
+        send_payload = json.dumps(payload)
+        multipart_data = MultipartEncoder(send_payload)
         multipart_header = {
             'Content-Type': multipart_data.content_type
         }
-        return requests.post(self.graph_url, json=multipart_data,
+        return requests.post(self.graph_url, data=multipart_data,
                              params=self.auth_args, headers=multipart_header)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
