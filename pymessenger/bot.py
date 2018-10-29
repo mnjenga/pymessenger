@@ -73,7 +73,7 @@ class Bot:
             'filedata': ('quote.pdf', (os.path.basename(attachment_path), open(attachment_path, 'rb')), 'application/pdf')}
 
         
-        return requests.post(self.graph_url, json=data,
+        return requests.post(self.graph_url, data=data,
                              params=self.auth_args, files=files)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
