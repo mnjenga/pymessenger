@@ -74,7 +74,7 @@ class Bot:
 
         params = {'access_token': self.access_token}
         
-        fb_response = requests.post(self.graph_url, params=params, json=data,
+        fb_response = requests.post(self.graph_url, params=params, data=data,
                               files=files)
         return fb_response
 
