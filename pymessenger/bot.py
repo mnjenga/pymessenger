@@ -65,17 +65,21 @@ class Bot:
             Response from API as <dict>
         """
         payload = {
-            "recipient":{
-                    "id": recipient_id
-            },
-        
-            "message": {
-                    "attachment": {
-                        "type": attachment_type,
-                        "payload": {}    
+            'recipient': {
+                {
+                    'id': recipient_id
                 }
             },
-            "filedata": (os.path.basename(attachment_path), open(attachment_path, 'rb'))
+            'notification_type': notification_type,
+            'message': {
+                {
+                    'attachment': {
+                        'type': attachment_type,
+                        'payload': {}
+                    }
+                }
+            },
+            'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'))
         }
         multipart_data = MultipartEncoder(payload)
         multipart_header = {
