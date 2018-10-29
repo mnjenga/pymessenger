@@ -84,8 +84,7 @@ class Bot:
         return requests.post(self.graph_url, data=multipart_data,
                              params=self.auth_args, headers=multipart_header).json()
 
-    def send_attachment_url(self, recipient_id, attachment_type, attachment_url,
-                            notification_type=NotificationType.regular):
+    def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
         """Send an attachment to the specified recipient using URL.
         Input:
             recipient_id: recipient id to send to
