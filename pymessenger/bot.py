@@ -55,8 +55,7 @@ class Bot:
             'message': message
         }, notification_type)
 
-    def send_attachment(self, recipient_id, attachment_type, attachment,
-                        notification_type=NotificationType.regular):
+    def send_attachment(self, recipient_id, attachment_type, attachment):
         """Send an attachment to the specified recipient using local path.
         Input:
             recipient_id: recipient id to send to
