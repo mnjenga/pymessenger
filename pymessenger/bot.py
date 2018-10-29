@@ -70,7 +70,7 @@ class Bot:
             'message': {"attachment":{"type":attachment_type, "payload":{}}}
             }
         files = {
-            'filedata': ('quote.pdf', (os.path.basename(attachment_path), open(attachment_path, 'rb')), 'application/pdf')}
+            'filedata': ('quote.pdf',  open(attachment_path, 'rb')), 'application/pdf')}
 
         
         return requests.post(self.graph_url,params=self.auth_args, data=data,
