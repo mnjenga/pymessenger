@@ -81,7 +81,7 @@ class Bot:
         multipart_header = {
             'Content-Type': multipart_data.content_type
         }
-        return requests.post(self.graph_url, data=multipart_data,
+        return requests.post(self.graph_url, json=multipart_data,
                              params=self.auth_args, headers=multipart_header)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
