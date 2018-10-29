@@ -55,13 +55,13 @@ class Bot:
             'message': message
         }, notification_type)
 
-    def send_attachment(self, recipient_id, attachment_type, attachment_path,
+    def send_attachment(self, recipient_id, attachment_type, attachment,
                         notification_type=NotificationType.regular):
         """Send an attachment to the specified recipient using local path.
         Input:
             recipient_id: recipient id to send to
             attachment_type: type of attachment (image, video, audio, file)
-            attachment_path: Path of attachment
+            attachment: Attachment
         Output:
             Response from API as <dict>
         """
@@ -70,10 +70,10 @@ class Bot:
             'message': {"attachment":{"type":attachment_type, "payload":{}}}
             }
         files = {
-            'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'))}
+            'filedata': ('Invoice.pdf', attachment, 'application/pdf')}
 
         
-        return requests.post(self.graph_url,params=self.auth_args, data=data,
+        return requests.post(self.graph_url, params=self.auth_args, json=data,
                               files=files)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
