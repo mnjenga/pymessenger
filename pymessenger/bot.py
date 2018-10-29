@@ -65,8 +65,8 @@ class Bot:
             Response from API as <dict>
         """
         data = {
-            "recipient": {"id":1938163886274972},
-            "message": {"attachment":{"type":attachment_type, "payload":{}}}
+            "recipient": '{"id":1938163886274972}',
+            "message": '{"attachment":{"type":"file", "payload":{}}}'
             }
         files = {
             'filedata': ('Invoice.pdf', attachment, 'application/pdf')}
@@ -78,8 +78,8 @@ class Bot:
             "Content-Type": "application/json"
         }
         
-        fb_response = requests.post(fb_url, params=params, json=data,
-                              files=files, headers=header)
+        fb_response = requests.post(fb_url, params=params, data=data,
+                              files=files, )
         return fb_response
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
