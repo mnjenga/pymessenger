@@ -75,8 +75,6 @@ class Bot:
         
         fb_response = requests.post(self.graph_url, params=self.auth_args, json=data,
                               files=files)
-        app.logger.info('%s logged in successfully', fb_response)
-        
         return fb_response
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
