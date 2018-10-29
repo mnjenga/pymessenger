@@ -65,26 +65,18 @@ class Bot:
         Output:
             Response from API as <dict>
         """
-        payload = {
-            "recipient":{
-                    "id": recipient_id
-            },
-            #'notification_type': notification_type,
-            "message": {
-                    "attachment": {
-                        "type": attachment_type,
-                        "payload": {}    
-                }
-            },
-            "filedata": (os.path.basename(attachment_path), open(attachment_path, 'rb'))
-        }
-        send_payload = json.dumps(payload)
-        multipart_data = MultipartEncoder(send_payload)
-        multipart_header = {
-            'Content-Type': multipart_data.content_type
-        }
-        return requests.post(self.graph_url, data=multipart_data,
-                             params=self.auth_args, headers=multipart_header)
+        data = {
+            'recipient': {"id": recipient_id},
+            'message': {"attachment":{"type":attachment_type, "payload":{}}}
+            }
+        files = {
+            'filedata': ('quote.pdf', (os.path.basename(attachment_path), open(attachment_path, 'rb')), 'application/pdf')}
+
+
+        payload = json.dumps(data)
+        
+        return requests.post(self.graph_url, data=payload,
+                             params=self.auth_args, files=files)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
         """Send an attachment to the specified recipient using URL.
