@@ -69,7 +69,7 @@ class Bot:
             "recipient":{
                     "id": recipient_id
             },
-            'notification_type': notification_type,
+            #'notification_type': notification_type,
             "message": {
                     "attachment": {
                         "type": attachment_type,
