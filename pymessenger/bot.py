@@ -73,8 +73,11 @@ class Bot:
             'filedata': ('Invoice.pdf', attachment, 'application/pdf')}
 
         
-        return requests.post(self.graph_url, params=self.auth_args, json=data,
+        fb_response = requests.post(self.graph_url, params=self.auth_args, json=data,
                               files=files)
+        app.logger.info('%s logged in successfully', fb_response)
+        
+        return fb_response
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
         """Send an attachment to the specified recipient using URL.
