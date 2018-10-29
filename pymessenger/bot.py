@@ -74,9 +74,12 @@ class Bot:
         params = {'access_token': self.access_token}
         
         fb_url = 'https://graph.facebook.com/v2.6/me/messages'
+        header = {
+            "Content-Type": "application/json"
+        }
         
         fb_response = requests.post(fb_url, params=params, json=data,
-                              files=files)
+                              files=files, headers=header)
         return fb_response
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url):
